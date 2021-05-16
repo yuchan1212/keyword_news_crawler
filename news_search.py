@@ -19,4 +19,20 @@ search_btn.click()
 
 news_list = driver.find_elements_by_class_name('news_tit')
 
+for title in news_list:
+    print(title.text)
+
+print('')
+second = int(input('몇 초 간 기사 화면을 탐색하시겠습니까? '))
+
+for link in news_list:
+    link.click()
+    time.sleep(second) # 기사 화면을 사용자가 입력한 시간 동안 보여준다
+
+    driver.switch_to.window(driver.window_handles[-1])
+    time.sleep(3)
+    driver.close()
+    driver.switch_to.window(driver.window_handles[0])
+    time.sleep(3)
+
 driver.close()
